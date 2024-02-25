@@ -4,7 +4,7 @@ import { getUserFromID } from "@/libs/getUser";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getCookie } from "cookies-next";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import Alert from "./Alert";
 import Editor from "./Editor";
 
@@ -70,6 +70,13 @@ export default function FormEditArticle({ categories, article }: Props) {
       return;
     }
   };
+
+  useEffect(() => {
+    const results = document.querySelector("#results-article");
+    if (!results) return;
+
+    results.innerHTML = article.article.content;
+  });
 
   return (
     <form action="" method="post" onSubmit={handleSubmit}>

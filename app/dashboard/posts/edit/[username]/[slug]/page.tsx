@@ -35,7 +35,7 @@ export default async function Create({ params }: Props) {
       <div className="w-full md:w-5/12 mt-10 md:mt-0 hidden md:block">
         <article
           id="results-article"
-          className="prose prose-sm prose-slate dark:prose-invert"
+          className="prose prose-sm prose-slate dark:prose-invert fixed top-[100px] overflow-auto h-[450px]"
         ></article>
       </div>
     </main>

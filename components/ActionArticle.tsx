@@ -16,13 +16,18 @@ export default function ActionArticle({ username, slug }: Props) {
   const router = useRouter();
 
   const handleDeleteArticle = async (username: string, slug: string) => {
-    const d = await deleteArticle(token, username, slug);
-    if (d) {
-      alert("Berhasil menghapus satu artikel.");
-      router.refresh();
-    } else {
-      alert("Gagal menghapus artikel.");
-      router.refresh();
+    const confirm = window.confirm(
+      "Apakah anda yakin untuk menghapus artikel ini?"
+    );
+    if (confirm) {
+      const d = await deleteArticle(token, username, slug);
+      if (d) {
+        alert("Berhasil menghapus satu artikel.");
+        router.refresh();
+      } else {
+        alert("Gagal menghapus artikel.");
+        router.refresh();
+      }
     }
   };
 

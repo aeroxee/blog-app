@@ -91,17 +91,19 @@ const editorConfiguration = {
 export default function CustomEditor({ initialData }: CKeditorProps) {
   return (
     <>
-      <CKEditor
-        editor={Editor}
-        data={initialData}
-        onChange={(_event: any, editor: any) => {
-          const data = editor.getData();
-          const results = document.querySelector("#results-article");
-          if (!results) return;
-          results.innerHTML = data;
-        }}
-        config={editorConfiguration}
-      />
+      <div className="text-black">
+        <CKEditor
+          editor={Editor}
+          data={initialData}
+          onChange={(_event: any, editor: any) => {
+            const data = editor.getData();
+            const results = document.querySelector("#results-article");
+            if (!results) return;
+            results.innerHTML = data;
+          }}
+          config={editorConfiguration}
+        />
+      </div>
     </>
   );
 }

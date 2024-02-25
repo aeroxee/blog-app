@@ -194,3 +194,7 @@
 .ck-content a:any-link:active {
     color: red;
 }
+
+.ck-content code {
+    color: black;
+}
