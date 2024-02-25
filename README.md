@@ -31,6 +31,10 @@ Sesuaikan dengan IP address anda.
 npm install
 ```
 
+```bash
+npm install file:./custom-build-ckeditor
+```
+
 3. Jalankan server API.
 
 4. Lalu build terlebih dahulu.
