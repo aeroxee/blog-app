@@ -29,9 +29,8 @@ Sesuaikan dengan IP address anda.
 
 ```bash
 npm install
-```
 
-```bash
+# Lalu instakk ckeditor custom build
 npm install file:./custom-build-ckeditor
 ```
 
