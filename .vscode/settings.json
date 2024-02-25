@@ -1,0 +1,54 @@
+{
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    "[go]": {
+      "editor.insertSpaces": false,
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+      },
+      "editor.suggest.snippetsPreventQuickSuggestions": false,
+      "editor.tabSize": 4
+    },
+    "[typescript]": {
+      "editor.insertSpaces": false,
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+      },
+      "editor.suggest.snippetsPreventQuickSuggestions": false,
+      "editor.tabSize": 2
+    },
+    "[typescriptreact]": {
+      "editor.insertSpaces": false,
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+      },
+      "editor.suggest.snippetsPreventQuickSuggestions": false,
+      "editor.tabSize": 2
+    },
+    "[javascript]": {
+      "editor.insertSpaces": false,
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+      },
+      "editor.suggest.snippetsPreventQuickSuggestions": false,
+      "editor.tabSize": 2
+    },
+    "[javascriptreact]": {
+      "editor.insertSpaces": false,
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+      },
+      "editor.suggest.snippetsPreventQuickSuggestions": false,
+      "editor.tabSize": 2
+    },
+    "[go][javascript][javascriptreact][typescript][typescriptreact]": {
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+      }
+    }
+  }
