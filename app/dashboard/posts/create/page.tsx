@@ -12,7 +12,7 @@ export default async function Create() {
 
   return (
     <main className="pt-[100px] px-4 md:px-[100px] flex flex-col md:flex-row gap-4">
-      <div className="w-full md:w-5/12">
+      <div className="w-full md:w-7/12">
         <h1 className="text-center text-2xl font-extrabold text-sky-600">
           Buat Artikel Baru
         </h1>
@@ -20,7 +20,7 @@ export default async function Create() {
         <FormCreateArticle categories={categories} />
       </div>
 
-      <div className="w-full md:w-7/12 mt-10 md:mt-0 hidden md:block">
+      <div className="w-full md:w-5/12 mt-10 md:mt-0 hidden md:block">
         <article
           id="results-article"
           className="prose prose-sm prose-slate dark:prose-invert"

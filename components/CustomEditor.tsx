@@ -5,6 +5,63 @@ interface CKeditorProps {
   initialData?: string;
 }
 
+interface FileLoader {
+  file: Promise<File>;
+}
+
+interface ImageUploadResponse {
+  url: string;
+  // Atau sesuaikan dengan respons backend Anda
+}
+
+class YourImageUploadAdapter {
+  private loader: FileLoader;
+
+  constructor(loader: FileLoader) {
+    this.loader = loader;
+  }
+
+  upload(): Promise<{ default: string }> {
+    return this.loader.file.then(
+      (file) =>
+        new Promise((resolve, reject) => {
+          // Ganti URL ini sesuai dengan endpoint pengunggahan gambar di backend Anda
+          const uploadUrl = `${process.env.SERVER_API_URL}/v1/upload`;
+
+          const formData = new FormData();
+          formData.append("file", file);
+
+          fetch(uploadUrl, {
+            method: "POST",
+            body: formData,
+          })
+            .then((response) => response.json() as Promise<ImageUploadResponse>)
+            .then((data) => {
+              // Data harus berisi URL gambar setelah berhasil diunggah
+              if (data && data.url) {
+                resolve({ default: data.url });
+              } else {
+                reject("Gagal mengambil URL gambar dari respons server.");
+              }
+            })
+            .catch((error) => {
+              reject(`Pengunggahan gambar gagal: ${error}`);
+            });
+        })
+    );
+  }
+
+  abort(): void {
+    // Implementasi pembatalan pengunggahan gambar jika diperlukan
+  }
+}
+
+function MyCustomUploadPlugin(editor: any) {
+  editor.plugins.get("FileRepository").createUploadAdapter = (loader: any) => {
+    return new YourImageUploadAdapter(loader);
+  };
+}
+
 const editorConfiguration = {
   toolbar: [
     "heading",
@@ -28,6 +85,7 @@ const editorConfiguration = {
     "codeBlock",
     "highlight",
   ],
+  extraPlugins: [MyCustomUploadPlugin],
 };
 
 export default function CustomEditor({ initialData }: CKeditorProps) {
