@@ -30,7 +30,7 @@ Sesuaikan dengan IP address anda.
 ```bash
 npm install
 
-# Lalu instakk ckeditor custom build
+# Lalu install ckeditor custom build
 npm install file:./custom-build-ckeditor
 ```
 
