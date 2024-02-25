@@ -23,7 +23,7 @@ export default async function PopularArticle({ articles }: Props) {
             legacyBehavior
             prefetch={false}
           >
-            <a className="text-lg font-bold text-sky-600 hover:text-sky-700">
+            <a className="text-sm font-bold text-sky-600 hover:text-sky-700">
               {article.title}
             </a>
           </Link>
@@ -41,7 +41,9 @@ export default async function PopularArticle({ articles }: Props) {
               <span>{article.views}</span>
             </div>
           </div>
-          <p>{stripHtmlAndTruncate(article.content, 10)}</p>
+          <p className="text-xs font-light">
+            {stripHtmlAndTruncate(article.content, 10)}
+          </p>
         </div>
       );
     })

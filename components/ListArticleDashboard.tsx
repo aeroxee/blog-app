@@ -44,10 +44,12 @@ export default function ListArticleDashboard({ articles, user }: Props) {
             key={index}
             className="border border-gray-300 dark:border-gray-600 rounded-md p-4 md:p-2 group relative"
           >
-            <h5 className="text-lg font-bold">{article.title}</h5>
+            <h5 className="text-sm font-bold">
+              {stripHtmlAndTruncate(article.title, 5)}...
+            </h5>
             <hr className="my-2" />
-            <p className="text-sm font-light">
-              {stripHtmlAndTruncate(article.content, 20)}
+            <p className="text-xs font-light">
+              {stripHtmlAndTruncate(article.content, 20)}...
             </p>
 
             <ActionArticle username={user.user.username} slug={article.slug} />
