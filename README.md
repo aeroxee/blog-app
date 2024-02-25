@@ -48,7 +48,7 @@ npm run build
 npm run start
 ```
 
-Server akan berjalan pada  `http:localhost:8000`
+Server akan berjalan pada  `http:localhost:3000`
 
 ### Struktur Proyek
 
