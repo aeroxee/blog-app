@@ -1,4 +1,5 @@
 import { getCategoryBySlug } from "@/libs/categories";
+import { getUserFromID } from "@/libs/getUser";
 import stripHtmlAndTruncate from "@/libs/truncate";
 import { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
@@ -29,6 +30,29 @@ export default async function CategoriesSlug({ params }: Props) {
     notFound();
   }
 
+  const categoryElement = Promise.all(
+    category.category.articles.map(async (article: any, index: number) => {
+      const owner = await getUserFromID(article.user_id);
+      return (
+        <Link
+          key={index}
+          href={`/posts/${owner.user.username}/${article.slug}`}
+          legacyBehavior
+          prefetch={false}
+        >
+          <div className="border border-gray-300 dark:border-gray-600 p-3 rounded-md hover:bg-black/20 cursor-pointer">
+            <div>
+              <h4 className="text-lg font-bold mb-2">{article.title}</h4>
+              <p className="text-xs text-gray-500 font-extralight">
+                {stripHtmlAndTruncate(article.content, 20)}
+              </p>
+            </div>
+          </div>
+        </Link>
+      );
+    })
+  );
+
   return (
     <main className="pt-[100px] w-[96%] md:w-[60%] mx-auto pb-[100px]">
       <h1 className="text-2xl text-sky-600 font-bold text-center">
@@ -36,18 +60,7 @@ export default async function CategoriesSlug({ params }: Props) {
       </h1>
 
       <div className="mt-10	grid grid-cols-1 md:grid-cols-2 gap-4">
-        {category.category.articles.map((article: any, index: number) => (
-          <Link key={index} href="" legacyBehavior prefetch={false}>
-            <div className="border border-gray-300 dark:border-gray-600 p-3 rounded-md hover:bg-black/20 cursor-pointer">
-              <div>
-                <h4 className="text-lg font-bold mb-2">{article.title}</h4>
-                <p className="text-xs text-gray-500 font-extralight">
-                  {stripHtmlAndTruncate(article.content, 20)}
-                </p>
-              </div>
-            </div>
-          </Link>
-        ))}
+        {categoryElement}
       </div>
     </main>
   );
