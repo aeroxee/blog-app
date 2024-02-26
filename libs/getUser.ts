@@ -6,6 +6,9 @@ async function getUserFromUsername(username: string) {
       headers: {
         "Content-Type": "application/json",
       },
+      next: {
+        revalidate: 60,
+      },
     }
   );
 
@@ -25,6 +28,9 @@ async function getUserFromID(id: number) {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+      },
+      next: {
+        revalidate: 60,
       },
     }
   );
