@@ -1,5 +1,6 @@
 import FormComment from "@/components/FormComment";
 import PopularArticle from "@/components/PopularArticle";
+import { getCategoryById } from "@/libs/categories";
 import getArticle from "@/libs/getArticle";
 import getAuthInfo from "@/libs/getAuthInfo";
 import { getComment } from "@/libs/getComment";
@@ -7,6 +8,7 @@ import getMoment from "@/libs/getMoment";
 import getPopularArticles from "@/libs/getPopularArticles";
 import { getUserFromID } from "@/libs/getUser";
 import {
+  faBook,
   faClock,
   faEye,
   faPenAlt,
@@ -38,6 +40,8 @@ export async function generateMetadata(
 
 export default async function Page({ params, searchParams }: Props) {
   const article = await getArticle(params.username, params.slug);
+
+  const category = await getCategoryById(article.article.category_id);
 
   const cookieStore = cookies();
   const token = cookieStore.get("token");
@@ -131,8 +135,15 @@ export default async function Page({ params, searchParams }: Props) {
                 </div>
                 <div className="flex items-center gap-1">
                   <FontAwesomeIcon icon={faEye} />
-                  <Link href={""} className="text-sky-600 hover:underline">
-                    {article.article.views}
+                  {article.article.views}
+                </div>
+                <div className="flex items-center gap-1">
+                  <FontAwesomeIcon icon={faBook} />
+                  <Link
+                    href={`/categories/${category.category.slug}`}
+                    className="text-sky-600 hover:underline"
+                  >
+                    {category.category.title}
                   </Link>
                 </div>
                 <div className="flex items-center gap-1">

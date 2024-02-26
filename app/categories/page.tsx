@@ -18,7 +18,12 @@ export default async function Categories() {
 
       <div className="mt-10	grid grid-cols-1 md:grid-cols-2 gap-4">
         {categories.categories.map((category: any, index: number) => (
-          <Link key={index} href="" legacyBehavior prefetch={false}>
+          <Link
+            key={index}
+            href={`/categories/${category.slug}`}
+            legacyBehavior
+            prefetch={false}
+          >
             <div className="border border-gray-300 dark:border-gray-600 p-3 rounded-md hover:bg-black/20 cursor-pointer">
               <div className="flex items-center justify-between">
                 <div>

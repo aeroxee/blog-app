@@ -1,7 +1,13 @@
+import { getCategoryById } from "@/libs/categories";
 import getMoment from "@/libs/getMoment";
 import { getUserFromID } from "@/libs/getUser";
 import stripHtmlAndTruncate from "@/libs/truncate";
-import { faClock, faEye, faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBook,
+  faClock,
+  faEye,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { Key } from "react";
@@ -15,6 +21,8 @@ export default async function ListArticle({ articles, q }: Props) {
   const articleElement = await Promise.all(
     articles.articles.map(async (article: any, index: Key) => {
       const userFromId = await getUserFromID(article.user_id);
+      const category = await getCategoryById(article.category_id);
+
       return (
         <>
           <article
@@ -38,16 +46,24 @@ export default async function ListArticle({ articles, q }: Props) {
               <div className="flex gap-1 items-center">
                 <FontAwesomeIcon icon={faUser} />
                 <Link href="/" legacyBehavior prefetch={false}>
-                  <span className="text-sky-600 underline">
+                  <span className="text-sky-600 underline cursor-pointer">
                     {userFromId.user.username}
                   </span>
                 </Link>
               </div>
               <div className="flex gap-1 items-center">
                 <FontAwesomeIcon icon={faEye} />
-                <Link href="/" legacyBehavior prefetch={false}>
-                  <span className="text-sky-600 underline">
-                    {article.views}
+                <span className="">{article.views}</span>
+              </div>
+              <div className="flex gap-1 items-center">
+                <FontAwesomeIcon icon={faBook} />
+                <Link
+                  href={`/categories/${category.category.slug}`}
+                  legacyBehavior
+                  prefetch={false}
+                >
+                  <span className="text-sky-600 underline cursor-pointer">
+                    {category.category.title}
                   </span>
                 </Link>
               </div>
