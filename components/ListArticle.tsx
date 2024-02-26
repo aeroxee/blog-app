@@ -38,7 +38,7 @@ export default async function ListArticle({ articles, q }: Props) {
                 {article.title}
               </a>
             </Link>
-            <div className="flex items-center gap-2 text-xs text-gray-500">
+            <div className="flex items-center flex-wrap gap-2 text-xs text-gray-500">
               <div className="flex gap-1 items-center">
                 <FontAwesomeIcon icon={faClock} />
                 <span>{getMoment(article.created_at)}</span>

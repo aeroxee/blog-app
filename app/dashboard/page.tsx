@@ -16,7 +16,7 @@ export default async function Dashbord() {
   const user = await getAuthInfo(token?.value);
 
   return (
-    <main className="pt-[100px] px-4 md:px-[100px]">
+    <main className="pt-[100px] px-4 md:px-[100px] pb-[100px]">
       <h1 className="text-sky-600 text-2xl">Dashboard</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">

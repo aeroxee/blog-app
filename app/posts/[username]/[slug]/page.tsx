@@ -130,7 +130,7 @@ export default async function Page({ params, searchParams }: Props) {
           <div className="w-full md:w-8/12">
             <div className="border-b border-b-gray-300 dark:border-b-gray-600 mb-4">
               <h1 className="text-3xl font-bold">{article.article.title}</h1>
-              <div className="flex items-center gap-3 text-xs text-gray-500">
+              <div className="flex items-center flex-wrap gap-3 text-xs text-gray-500">
                 <div className="flex items-center gap-1">
                   <FontAwesomeIcon icon={faClock} />
                   {getMoment(article.article.created_at)}

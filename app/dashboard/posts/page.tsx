@@ -31,7 +31,7 @@ export default async function Posts({ searchParams }: Props) {
   const articles = await getArticlesByUserID(user.user.id, page, q, status);
 
   return (
-    <main className="pt-[100px] px-4 md:px-[100px]">
+    <main className="pt-[100px] px-4 md:px-[100px] pb-[100px]">
       <ListArticleDashboard user={user} articles={articles} />
     </main>
   );

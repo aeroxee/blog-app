@@ -37,7 +37,7 @@ export default async function Profile({ params }: Props) {
   const thisUser = await getAuthInfo(token?.value);
 
   return (
-    <main className="pt-[100px] w-[96%] md:w-[60%] mx-auto">
+    <main className="pt-[100px] w-[96%] md:w-[60%] mx-auto pb-[100px]">
       <div className="flex items-center justify-center my-5">
         <div className="text-center">
           {user.user.avatar !== null ? (

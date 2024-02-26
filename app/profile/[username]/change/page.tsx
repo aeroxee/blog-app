@@ -38,7 +38,7 @@ export default async function Profile({ params }: Props) {
   }
 
   return (
-    <main className="pt-[100px] w-[96%] md:w-[60%] mx-auto">
+    <main className="pt-[100px] w-[96%] md:w-[60%] mx-auto pb-[100px]">
       <h1 className="text-2xl font-extrabold">
         {user.user.first_name} {user.user.last_name}
       </h1>

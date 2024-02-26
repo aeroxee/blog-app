@@ -11,7 +11,7 @@ export default async function Categories() {
   const categories = await getAllCategories();
 
   return (
-    <main className="pt-[100px] w-[96%] md:w-[60%] mx-auto">
+    <main className="pt-[100px] w-[96%] md:w-[60%] mx-auto pb-[100px]">
       <h1 className="text-2xl text-sky-600 font-bold text-center">
         Kategori Aeroxee Blog
       </h1>

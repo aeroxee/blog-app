@@ -26,7 +26,7 @@ export default async function Home({ searchParams }: Props) {
 
   return (
     <>
-      <main className="pt-[100px] px-4 md:px-[100px]">
+      <main className="pt-[100px] px-4 md:px-[100px] pb-[100px]">
         <div className="flex flex-col md:flex-row gap-4">
           <div className="w-full md:w-8/12">
             <h1 className="text-3xl font-extrabold mb-3">Aeroxee Blog</h1>
