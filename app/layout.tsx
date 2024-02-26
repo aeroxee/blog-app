@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import getAuthInfo from "@/libs/getAuthInfo";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -34,9 +35,14 @@ export default async function RootLayout({
 
   return (
     <html lang="id">
-      <body className="dark:text-white dark:bg-gray-900" style={poppins.style}>
+      <body
+        className="dark:text-white dark:bg-gray-900 relative min-h-screen"
+        style={poppins.style}
+      >
         <Navbar user={user} />
         <div className="pb-[50px]">{children}</div>
+
+        <Footer />
       </body>
     </html>
   );

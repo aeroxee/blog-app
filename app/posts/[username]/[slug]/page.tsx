@@ -125,7 +125,7 @@ export default async function Page({ params, searchParams }: Props) {
 
   return (
     <>
-      <main className="pt-[100px] px-5 md:px-[100px]">
+      <main className="pt-[100px] px-5 md:px-[100px] pb-[100px]">
         <div className="flex flex-col md:flex-row gap-4">
           <div className="w-full md:w-8/12">
             <div className="border-b border-b-gray-300 dark:border-b-gray-600 mb-4">
