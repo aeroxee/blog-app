@@ -86,6 +86,20 @@ const editorConfiguration = {
     "highlight",
   ],
   extraPlugins: [MyCustomUploadPlugin],
+  codeBlock: {
+    languages: [
+      { language: "plaintext", label: "Plaintext" },
+      { language: "html", label: "HTML" },
+      { language: "css", label: "CSS" },
+      { language: "py", label: "Python" },
+      { language: "js", label: "Javascript" },
+      { language: "ts", label: "Typescript" },
+      { language: "go", label: "Golang" },
+      { language: "c", label: "C" },
+      { language: "cpp", label: "C++" },
+      { language: "bash", label: "BASH" },
+    ],
+  },
 };
 
 export default function CustomEditor({ initialData }: CKeditorProps) {
