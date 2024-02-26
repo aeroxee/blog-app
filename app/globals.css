@@ -198,3 +198,7 @@
 .ck-content code {
     color: black;
 }
+
+.ck-content p {
+    margin-bottom: 1rem;
+}

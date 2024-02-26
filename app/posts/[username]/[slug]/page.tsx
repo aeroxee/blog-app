@@ -188,10 +188,11 @@ export default async function Page({ params, searchParams }: Props) {
             {/* Comment */}
           </div>
 
-          {/* TODO:  */}
           <div className="w-full md:w-4/12">
-            <h1 className="text-2xl font-bold">Artikel terpopuler</h1>
-            <PopularArticle articles={popularArticles} />
+            <div className="md:sticky top-[100px]">
+              <h1 className="text-2xl font-bold">Artikel terpopuler</h1>
+              <PopularArticle articles={popularArticles} />
+            </div>
           </div>
         </div>
       </main>
