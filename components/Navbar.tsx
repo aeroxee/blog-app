@@ -7,7 +7,7 @@ import {
   faX,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { deleteCookie, getCookie } from "cookies-next";
+import { deleteCookie, getCookie, setCookie } from "cookies-next";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -25,7 +25,10 @@ type Props = {
  */
 const Navbar = ({ user }: Props): JSX.Element => {
   const [show, setShow] = useState<boolean>(false);
-  const [isDark, setIsDark] = useState(false);
+
+  // set theme
+  const theme = getCookie("theme");
+  const [isDark, setIsDark] = useState(theme === "dark" ? true : false);
   const [isLogin, setIsLogin] = useState<boolean>(false);
 
   const pathname = usePathname();
@@ -71,23 +74,40 @@ const Navbar = ({ user }: Props): JSX.Element => {
     }
   });
 
+  // useEffect(() => {
+  //   if (isDark) {
+  //     localStorage.theme = "dark";
+  //   } else {
+  //     localStorage.theme = "light";
+  //   }
+
+  //   if (
+  //     localStorage.theme === "dark" ||
+  //     (!("theme" in localStorage) &&
+  //       window.matchMedia("(prefers-color-scheme: dark)").matches)
+  //   ) {
+  //     document.documentElement.classList.add("dark");
+  //   } else {
+  //     document.documentElement.classList.remove("dark");
+  //   }
+  // }, [isDark]);
+
   useEffect(() => {
     if (isDark) {
-      localStorage.theme = "dark";
+      setCookie("theme", "dark");
     } else {
-      localStorage.theme = "light";
+      setCookie("theme", "light");
     }
+  }, [isDark]);
 
-    if (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
+  useEffect(() => {
+    const theme = getCookie("theme");
+    if (theme === "dark") {
       document.documentElement.classList.add("dark");
     } else {
       document.documentElement.classList.remove("dark");
     }
-  }, [isDark]);
+  });
 
   useEffect(() => {
     hljs.highlightAll();
