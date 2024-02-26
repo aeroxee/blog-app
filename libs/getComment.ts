@@ -14,7 +14,11 @@ async function getComment(username: any, slug: any) {
 
   const data = await response.json();
 
-  return data;
+  if (response.ok) {
+    return data;
+  } else {
+    return null;
+  }
 }
 
 export { getComment };

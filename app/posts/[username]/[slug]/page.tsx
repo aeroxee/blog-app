@@ -18,6 +18,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Metadata, ResolvingMetadata } from "next";
 import { cookies } from "next/headers";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 type Props = {
   params: { slug: string; username: string };
@@ -32,6 +33,9 @@ export async function generateMetadata(
   const username = params.username;
 
   const article = await getArticle(username, slug);
+  if (!article) {
+    notFound();
+  }
 
   return {
     title: article.article.title + " | Aeroxee",
@@ -41,6 +45,10 @@ export async function generateMetadata(
 export default async function Page({ params, searchParams }: Props) {
   const article = await getArticle(params.username, params.slug);
 
+  if (!article) {
+    notFound();
+  }
+
   const category = await getCategoryById(article.article.category_id);
 
   const cookieStore = cookies();
@@ -48,7 +56,7 @@ export default async function Page({ params, searchParams }: Props) {
 
   const userAuthInfo = await getAuthInfo(token?.value);
 
-  const thisUser = userAuthInfo.status === "success" ? userAuthInfo.user : null;
+  const thisUser = userAuthInfo !== null ? userAuthInfo.user : null;
 
   const owner = await getUserFromID(article.article.user_id);
 
@@ -129,7 +137,10 @@ export default async function Page({ params, searchParams }: Props) {
                 </div>
                 <div className="flex items-center gap-1">
                   <FontAwesomeIcon icon={faUser} />
-                  <Link href={""} className="text-sky-600 hover:underline">
+                  <Link
+                    href={`/profile/${owner.user.username}`}
+                    className="text-sky-600 hover:underline"
+                  >
                     {owner.user.username}
                   </Link>
                 </div>

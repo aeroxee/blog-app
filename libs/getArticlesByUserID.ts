@@ -17,9 +17,9 @@ export default async function getArticlesByUserID(
 
   const data = await response.json();
 
-  if (data.status === "success") {
+  if (response.ok) {
     return data;
   } else {
-    return {};
+    return null;
   }
 }

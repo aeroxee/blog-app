@@ -11,7 +11,11 @@ async function getUserFromUsername(username: string) {
 
   const data = await response.json();
 
-  return data;
+  if (response.ok) {
+    return data;
+  } else {
+    return null;
+  }
 }
 
 async function getUserFromID(id: number) {
@@ -27,7 +31,11 @@ async function getUserFromID(id: number) {
 
   const data = await response.json();
 
-  return data;
+  if (response.ok) {
+    return data;
+  } else {
+    return null;
+  }
 }
 
 export { getUserFromID, getUserFromUsername };

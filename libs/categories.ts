@@ -6,8 +6,11 @@ async function getAllCategories() {
     },
   });
   const data = await response.json();
-
-  return data;
+  if (response.ok) {
+    return data;
+  } else {
+    return null;
+  }
 }
 
 async function getCategoryBySlug(slug: string) {
@@ -20,7 +23,11 @@ async function getCategoryBySlug(slug: string) {
     }
   );
   const data = await response.json();
-  return data;
+  if (response.ok) {
+    return data;
+  } else {
+    return null;
+  }
 }
 
 async function getCategoryById(id: number) {

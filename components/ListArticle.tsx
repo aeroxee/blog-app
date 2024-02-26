@@ -45,7 +45,11 @@ export default async function ListArticle({ articles, q }: Props) {
               </div>
               <div className="flex gap-1 items-center">
                 <FontAwesomeIcon icon={faUser} />
-                <Link href="/" legacyBehavior prefetch={false}>
+                <Link
+                  href={`/profile/${userFromId.user.username}`}
+                  legacyBehavior
+                  prefetch={false}
+                >
                   <span className="text-sky-600 underline cursor-pointer">
                     {userFromId.user.username}
                   </span>
