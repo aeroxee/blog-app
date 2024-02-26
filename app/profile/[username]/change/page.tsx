@@ -2,9 +2,14 @@ import FormChangeUserInfo from "@/components/FormChangeUserInfo";
 import getAuthInfo from "@/libs/getAuthInfo";
 import { Metadata, ResolvingMetadata } from "next";
 import { cookies } from "next/headers";
+import { notFound } from "next/navigation";
+
+type Props = {
+  params: { username: string };
+};
 
 export async function generateMetadata(
-  _params: any,
+  { params }: Props,
   _parent: ResolvingMetadata
 ): Promise<Metadata> {
   const cookieStore = cookies();
@@ -12,17 +17,25 @@ export async function generateMetadata(
 
   const user = await getAuthInfo(token?.value);
 
+  if (params.username !== user.user.username) {
+    notFound();
+  }
+
   return {
     title: `Profile ${user.user.username} | Aeroxee Blog`,
     description: "Halaman pengguna dari aeroxee blog.",
   };
 }
 
-export default async function Profile() {
+export default async function Profile({ params }: Props) {
   const cookieStore = cookies();
   const token = cookieStore.get("token");
 
   const user = await getAuthInfo(token?.value);
+
+  if (params.username !== user.user.username) {
+    notFound();
+  }
 
   return (
     <main className="pt-[100px] w-[96%] md:w-[60%] mx-auto">
