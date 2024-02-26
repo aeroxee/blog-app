@@ -2,6 +2,7 @@ import { getCategoryBySlug } from "@/libs/categories";
 import stripHtmlAndTruncate from "@/libs/truncate";
 import { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 type Props = {
   params: { slug: string };
@@ -12,6 +13,9 @@ export async function generateMetadata(
   _parent: ResolvingMetadata
 ): Promise<Metadata> {
   const category = await getCategoryBySlug(params.slug);
+  if (!category) {
+    notFound();
+  }
 
   return {
     title: `${category.category.title} | Aeroxee Blog`,
@@ -20,6 +24,10 @@ export async function generateMetadata(
 
 export default async function CategoriesSlug({ params }: Props) {
   const category = await getCategoryBySlug(params.slug);
+
+  if (!category) {
+    notFound();
+  }
 
   return (
     <main className="pt-[100px] w-[96%] md:w-[60%] mx-auto">

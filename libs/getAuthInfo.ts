@@ -9,5 +9,10 @@ export default async function getAuthInfo(token: any) {
   });
 
   const data = await response.json();
-  return data;
+
+  if (response.ok) {
+    return data;
+  } else {
+    return null;
+  }
 }

@@ -13,5 +13,9 @@ export default async function getPopularArticles() {
   );
 
   const data = await response.json();
-  return data;
+  if (response.ok) {
+    return data;
+  } else {
+    return null;
+  }
 }

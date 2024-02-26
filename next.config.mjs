@@ -14,6 +14,9 @@ const nextConfig = {
         hostname: process.env.SERVER_API_HOST,
         port: "8000",
       },
+      {
+        hostname: "media.giphy.com",
+      },
     ],
   },
   env: {
@@ -48,6 +51,17 @@ const nextConfig = {
         ],
         permanent: false,
         destination: "/",
+      },
+      {
+        source: "/profile/:username/change",
+        missing: [
+          {
+            type: "cookie",
+            key: "token",
+          },
+        ],
+        permanent: false,
+        destination: "/login",
       },
     ];
   },

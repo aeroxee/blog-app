@@ -1,7 +1,10 @@
 import FormEditArticle from "@/components/FormEditArticle";
 import { getAllCategories } from "@/libs/categories";
 import getArticle from "@/libs/getArticle";
+import getAuthInfo from "@/libs/getAuthInfo";
 import { Metadata, ResolvingMetadata } from "next";
+import { cookies } from "next/headers";
+import { notFound } from "next/navigation";
 
 type Props = {
   params: { username: string; slug: string };
@@ -21,6 +24,14 @@ export async function generateMetadata(
 export default async function Create({ params }: Props) {
   const categories = await getAllCategories();
   const article = await getArticle(params.username, params.slug);
+
+  const cookieStore = cookies();
+  const token = cookieStore.get("token");
+  const thisUser = await getAuthInfo(token?.value);
+
+  if (thisUser.user.id !== article.article.user_id) {
+    notFound();
+  }
 
   return (
     <main className="pt-[100px] px-4 md:px-[100px] flex flex-col md:flex-row gap-4">

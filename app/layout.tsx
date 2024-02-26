@@ -14,9 +14,9 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "KafeKoding Community",
+  title: "Aeroxee Blog",
   description:
-    "KafeKoding Community adalah sebuah komunitas yang bergerak di bidang IT",
+    "Aeroxee Blog adalah website yang menyediakan pembuatan blog pribadi.",
   authors: {
     name: "Fajri Fath",
     url: "https://github.com/Aeroxee",

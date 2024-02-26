@@ -33,7 +33,7 @@ const Navbar = ({ user }: Props): JSX.Element => {
   const navRef = useRef<HTMLDivElement | null>(null);
 
   // user info
-  const userInfo = user.status === "success" ? user : "";
+  const userInfo = user !== null ? user : "";
 
   const router = useRouter();
   const logoutAction = () => {
@@ -104,11 +104,14 @@ const Navbar = ({ user }: Props): JSX.Element => {
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-between gap-4 w-full md:w-auto">
-              {pathname.startsWith("/posts") ? (
-                <div className="flex gap-3 items-center">
+              {pathname.startsWith("/posts") ||
+              pathname.startsWith("/categories") ||
+              pathname.startsWith("/profile") ? (
+                <div className="flex gap-5 items-center">
                   <button type="button" onClick={() => router.back()}>
                     <FontAwesomeIcon icon={faArrowLeft} />
                   </button>
+                  |
                   <Link href="/" className="text-xl font-extrabold">
                     Aeroxee
                   </Link>
@@ -170,6 +173,14 @@ const Navbar = ({ user }: Props): JSX.Element => {
                     Posts
                   </Link>
                   <Link
+                    id="navbarLinks"
+                    href={`/profile/${user.user.username}`}
+                    className="text-sm text-gray-700 hover:text-black dark:text-gray-400 dark:hover:text-gray-200"
+                    prefetch={false}
+                  >
+                    Profile
+                  </Link>
+                  <Link
                     href="/login"
                     onClick={() => logoutAction()}
                     className="text-white text-sm px-4 py-2 rounded-md bg-rose-600 hover:bg-rose-700 active:bg-rose-600"
@@ -197,14 +208,24 @@ const Navbar = ({ user }: Props): JSX.Element => {
                   </Link>
 
                   {isLogin && (
-                    <Link
-                      id="navbarLinks"
-                      href="/dashboard"
-                      className="text-sm text-gray-700 hover:text-black dark:text-gray-400 dark:hover:text-gray-200"
-                      prefetch={false}
-                    >
-                      Dashboard
-                    </Link>
+                    <>
+                      <Link
+                        id="navbarLinks"
+                        href="/dashboard"
+                        className="text-sm text-gray-700 hover:text-black dark:text-gray-400 dark:hover:text-gray-200"
+                        prefetch={false}
+                      >
+                        Dashboard
+                      </Link>
+                      <Link
+                        id="navbarLinks"
+                        href={`/profile/${user.user.username}`}
+                        className="text-sm text-gray-700 hover:text-black dark:text-gray-400 dark:hover:text-gray-200"
+                        prefetch={false}
+                      >
+                        Profile
+                      </Link>
+                    </>
                   )}
 
                   {isLogin ? (

@@ -12,9 +12,9 @@ export default async function getArticles(page: number, q: string) {
 
   const data = await response.json();
 
-  if (data.status === "success") {
+  if (response.ok) {
     return data;
   } else {
-    return [];
+    return null;
   }
 }
