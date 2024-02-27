@@ -5,6 +5,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { cookies } from "next/headers";
+import NextTopLoader from "nextjs-toploader";
 import "yet-another-react-lightbox/plugins/captions.css";
 import "yet-another-react-lightbox/styles.css";
 import "./globals.css";
@@ -39,6 +40,7 @@ export default async function RootLayout({
         className="dark:text-white dark:bg-gray-900 relative min-h-screen"
         style={poppins.style}
       >
+        <NextTopLoader zIndex={1000} />
         <Navbar user={user} />
         <div className="pb-[50px]">{children}</div>
 

@@ -1,3 +1,4 @@
+import ImageLoaderProfile from "@/components/ImageLoaderProfile";
 import getAuthInfo from "@/libs/getAuthInfo";
 import { getUserFromUsername } from "@/libs/getUser";
 import { Metadata, ResolvingMetadata } from "next";
@@ -41,12 +42,9 @@ export default async function Profile({ params }: Props) {
       <div className="flex items-center justify-center my-5">
         <div className="text-center">
           {user.user.avatar !== null ? (
-            <Image
+            <ImageLoaderProfile
               src={`${process.env.SERVER_API_URL}/${user.user.avatar}`}
               alt={user.user.username}
-              width={1200}
-              height={800}
-              className="w-[200px] h-[200px] rounded-full mb-2"
             />
           ) : (
             <Image
